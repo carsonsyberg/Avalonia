@@ -1,0 +1,199 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AngelSixMVVM.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:AngelSixMVVM"
+        mc:Ignorable="d" d:DesignWidth="1048" d:DesignHeight="645"
+		Width="1048" Height="645"
+        x:Class="AngelSixMVVM.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="AngelSixMVVM">
+
+    <Window.Styles>
+        <Style Selector="Button.small">
+            <Setter Property="FontSize" Value="12"></Setter>
+            <Setter Property="Background" Value="#7f98c7"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="CornerRadius" Value="20"></Setter>
+            <Setter Property="Padding" Value="7, 2"></Setter>
+        </Style>
+        <Style Selector="Button.small:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#98acd0"></Setter>
+            <Setter Property="TextBlock.Foreground" Value="White"></Setter>
+        </Style>
+    </Window.Styles>
+
+    <Grid Name="MainGrid" RowDefinitions="Auto, *, Auto">
+		<!-- Title bar -->
+		<Grid Background="#e5e5e5"
+              Height="40"
+              ColumnDefinitions="Auto, Auto, *, Auto, Auto"
+              Grid.Row="0">
+			<Button Grid.Column="0">Monitor</Button>
+			<Button Grid.Column="1">Lock</Button>
+			<StackPanel Grid.Column="2"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+				<Label FontSize="24" FontWeight="Black" Content="{Binding BoldTitle}"/>
+				<Label FontSize="24" Content="{Binding RegularTitle}"/>
+			</StackPanel>
+			<Button Grid.Column="3">Exit</Button>
+			<Button Grid.Column="4">Settings</Button>
+		</Grid>
+
+		<!-- Main area -->
+		<Grid Background="#1a1c20"
+              Grid.Row="1"
+              ColumnDefinitions="Auto, Auto, *">
+
+			<!-- Volume Bar -->
+			<Grid Grid.Column="0"
+                  Width="150"
+                  RowDefinitions="*, Auto, Auto"
+                  Margin="0, 20">
+
+				<!-- Volume Meter Gauge -->
+				<Grid Grid.Row="0"
+                      RowDefinitions="3*,3*,3*,9*,5*,4*,9*,9*,9*,6*,Auto"
+                      ColumnDefinitions="Auto, *, Auto, Auto"
+                      Margin="10, 0">
+					<Grid.Styles>
+						<Style Selector="Label">
+							<Setter Property="Foreground" Value="White"></Setter>
+							<Setter Property="FontSize" Value="12"></Setter>
+							<Setter Property="HorizontalAlignment" Value="Right"></Setter>
+							<Setter Property="Padding" Value="0"></Setter>
+						</Style>
+					</Grid.Styles>
+
+					<!-- Left Meter Ticks -->
+					<Label Grid.Row="0" Grid.Column="0">0 —</Label>
+					<Label Grid.Row="1" Grid.Column="0">-3 —</Label>
+					<Label Grid.Row="2" Grid.Column="0">-6 —</Label>
+					<Label Grid.Row="3" Grid.Column="0">-9 —</Label>
+					<Label Grid.Row="4" Grid.Column="0">-18 —</Label>
+					<Label Grid.Row="5" Grid.Column="0">-23 —</Label>
+					<Label Grid.Row="6" Grid.Column="0">-27 —</Label>
+					<Label Grid.Row="7" Grid.Column="0">-36 —</Label>
+					<Label Grid.Row="8" Grid.Column="0">-45 —</Label>
+					<Label Grid.Row="9" Grid.Column="0">-54 —</Label>
+					<Label Grid.Row="10" Grid.Column="0"></Label>
+
+					<!-- Volume Meter Bar -->
+					<Grid Grid.Row="0"
+                          Grid.Column="1"
+                          Grid.RowSpan="11"
+                          Width="20"
+                          RowDefinitions="23*, 37*">
+						<Rectangle Grid.Row="0" Margin="0,8,0,-8" Fill="#b05c4e" Width="20"/>
+						<Rectangle Grid.Row="1" Margin="0,8,0,0" Fill="White" Width="20"/>
+					</Grid>
+
+					<!-- Right Meter Ticks -->
+					<Label Grid.Row="0" Grid.Column="2">—</Label>
+					<Label Grid.Row="1" Grid.Column="2">—</Label>
+					<Label Grid.Row="2" Grid.Column="2">—</Label>
+					<Label Grid.Row="3" Grid.Column="2">—</Label>
+					<Label Grid.Row="4" Grid.Column="2">—</Label>
+					<Label Grid.Row="5" Grid.Column="2">—</Label>
+					<Label Grid.Row="6" Grid.Column="2">—</Label>
+					<Label Grid.Row="7" Grid.Column="2">—</Label>
+					<Label Grid.Row="8" Grid.Column="2">—</Label>
+					<Label Grid.Row="9" Grid.Column="2">—</Label>
+					<Label Grid.Row="10" Grid.Column="2"></Label>
+
+					<!-- Arrow Slider -->
+					<Canvas Grid.Row="0" Grid.Column="3" Grid.RowSpan="11" Width="20">
+						<Rectangle Canvas.Top="0" Fill="Red" Width="20" Height="20"></Rectangle>
+					</Canvas>
+				</Grid>
+
+				<!-- Volume Bar Label -->
+				<Label Grid.Row="1"
+                       FontSize="20"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="0, 5, 0, 5">
+					LUFS
+				</Label>
+
+				<!-- Volume Bar Buttons -->
+				<StackPanel Grid.Row="2"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+
+					<Button Classes="small" Margin="0, 0, 20, 0">>></Button>
+					<Button Classes="small" >INT-LRA</Button>
+
+				</StackPanel>
+
+			</Grid>
+
+			<!-- Details Panel -->
+			<StackPanel Grid.Column="1"
+                        Width="170"
+                        Margin="0,15,10,15">
+				<controls:LargeLabelControl LargeText="-21.1 LUFS"
+                                            SmallText="SHORT TERM" />
+				<controls:LargeLabelControl LargeText="-20.7"
+                                            SmallText="INTEGRATED"
+                                            Background="{DynamicResource LightBlueBrush}"/>
+				<controls:LargeLabelControl LargeText="9.5 LU"
+                                            SmallText="LOUDNESS RANGE" />
+				<controls:LargeLabelControl LargeText="11.5 LU"
+                                            SmallText="REALTIME DYNAMICS" />
+				<controls:LargeLabelControl LargeText="20.5 LU"
+                                            SmallText="AVG. DYNAMIC (PLR)"
+                                            Margin="0,0,0,13"/>
+
+
+				<controls:LargeLabelControl LargeText="-9.8 LUFS"
+                                            SmallText="MOMENTARY MAX"
+                                            Classes="button" />
+				<controls:LargeLabelControl LargeText="-15.1 LUFS"
+                                            SmallText="SHORT TERM MAX"
+                                            Classes="button" />
+				<controls:LargeLabelControl LargeText="0.7dB"
+                                            SmallText="TRUE PEAK MAX"
+                                            Margin="0,0,0,10"
+                                            Classes="button" />
+
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+					<Button Classes="small" Margin="0,0,20,0">AUTO</Button>
+					<Button Classes="small" FontSize="20" FontFamily="Arial" Background="{DynamicResource FadedRedBrush}">X</Button>
+				</StackPanel>
+			</StackPanel>
+
+			<!-- Audio Graph -->
+			<Rectangle Grid.Column="2" Fill="Black"></Rectangle>
+		</Grid>
+
+		<!-- Bottom bar -->
+		<Grid
+              Height="40"
+              Grid.Row="2"
+              Margin="8"
+              ColumnDefinitions="Auto, Auto, *, Auto, Auto, Auto, Auto, Auto">
+			<Button Grid.Column="0"
+                    Margin="0, 0, 8, 0"
+                    Name="ChannelConfigBtn"
+                    Command="{Binding ChannelConfigBtnClickCommand}">
+				Stereo
+			</Button>
+			<Button Grid.Column="1" IsVisible="{Binding ChannelConfigListOpen}">Youtube</Button>
+			<Button Grid.Column="3"
+                    Margin="0, 0, 8, 0">10 SEC</Button>
+			<Button Grid.Column="4"
+                    Margin="0, 0, 8, 0">CONTINUOUS</Button>
+			<Rectangle Grid.Column="5"
+                       Fill="Black"
+				       Width="30"
+				       Margin="0, 0, 8, 0"></Rectangle>
+			<Rectangle Grid.Column="6"
+                       Fill="Red"
+                       Width="30"></Rectangle>
+		</Grid>
+	</Grid>
+</Window>
