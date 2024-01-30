@@ -7,6 +7,7 @@
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="/Styles/LargeLabelControl.axaml"></StyleInclude>
+        <StyleInclude Source="/Styles/AnimatedPopup.axaml"></StyleInclude>
     </Application.Styles>
 
     <Application.Resources>

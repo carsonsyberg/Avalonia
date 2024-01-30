@@ -24,8 +24,36 @@
         </Style>
     </Window.Styles>
 
+    <!-- Main Grid -->
     <Grid Name="MainGrid" RowDefinitions="Auto, *, Auto">
-		<!-- Title bar -->
+    
+        <!-- Channel Config Popup Closer -->
+        <Border Grid.Row="0" 
+                Grid.RowSpan="3" 
+                Background="Transparent" 
+                ZIndex="1"
+				IsVisible="{Binding ChannelConfigListOpen}"
+                PointerPressed="InputElement_OnPointerPressed"></Border>
+
+        <!-- Channel Config Popup -->
+		<controls:AnimatedPopup 
+            Name="ChannelConfigPopup" 
+			Grid.Row="0"
+            Grid.RowSpan="3"
+            AnimationTime="0.3">
+			<Border 
+                Padding="20" 
+                Background="White" 
+                BorderThickness="1" 
+                BorderBrush="#ddd" 
+                CornerRadius="5">
+				<StackPanel>
+					<Label Content="Hello World"></Label>
+                </StackPanel>
+            </Border>
+        </controls:AnimatedPopup>
+
+        <!-- Title bar -->
 		<Grid Background="#e5e5e5"
               Height="40"
               ColumnDefinitions="Auto, Auto, *, Auto, Auto"
@@ -179,10 +207,11 @@
 			<Button Grid.Column="0"
                     Margin="0, 0, 8, 0"
                     Name="ChannelConfigBtn"
-                    Command="{Binding ChannelConfigBtnClickCommand}">
+                    Command="{Binding #ChannelConfigPopup.BeginOpen}">
 				Stereo
 			</Button>
-			<Button Grid.Column="1" IsVisible="{Binding ChannelConfigListOpen}">Youtube</Button>
+			<Button Grid.Column="1" Content="Youtube">
+            </Button>
 			<Button Grid.Column="3"
                     Margin="0, 0, 8, 0">10 SEC</Button>
 			<Button Grid.Column="4"

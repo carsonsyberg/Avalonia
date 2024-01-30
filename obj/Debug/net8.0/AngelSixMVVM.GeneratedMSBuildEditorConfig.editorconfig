@@ -13,15 +13,18 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AngelSixMVVM
-build_property.ProjectDir = C:\Users\csyberg\Documents\Software\AngelSixMVVMGit\
+build_property.ProjectDir = C:\Users\csyberg\Documents\Software\AngelSixMVVM\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[C:/Users/csyberg/Documents/Software/AngelSixMVVMGit/App.axaml]
+[C:/Users/csyberg/Documents/Software/AngelSixMVVM/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/csyberg/Documents/Software/AngelSixMVVMGit/Styles/LargeLabelControl.axaml]
+[C:/Users/csyberg/Documents/Software/AngelSixMVVM/Styles/AnimatedPopup.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/csyberg/Documents/Software/AngelSixMVVMGit/Views/MainWindow.axaml]
+[C:/Users/csyberg/Documents/Software/AngelSixMVVM/Styles/LargeLabelControl.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/csyberg/Documents/Software/AngelSixMVVM/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
